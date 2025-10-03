@@ -28,7 +28,9 @@
 
   - Offer - The offer is the model that defines the offers for the products. It includes the offer description(the offer description eg buy one get another at half price), the offer price(A negative price that will be discounted from the basket), the trigger count(The number of items of type product catalogue that need to be in the basket to trigger the offer) and the offer product catalogue(The product catalogue item that will be discounted from the basket eg a BOGAF offer where if you buy one you get another product at a discounted price). The buy one and get one at half price offer for the red widget is included in the seed file.
  
-  - Basket - The basket is the model that defines the basket for the products. It includes the basket line items and the basket total. The basket line items are the products that are in the basket and the basket total is the total price of the basket. The basket line items can be type product catalogue or offer(discounts).
+  - Basket - The basket is the model that defines the basket that will contain the products and offers.
+
+  - Basket Line Items - This model belongs to the Basket model and defines the line items that are in the basket. It includes the product catalogue item or offer and the price of the item. The basket totals taking into account the offers and delivery charges are computed instead of storing the totals in the basket model.
 
 
 

@@ -42,7 +42,7 @@ Things you may want to cover:
 
 ## How it works
 
- The application uses Rails version Rails 7.0.8.7 and uses several models who's data is persisted in an SQLite database. The design decision to use SQLite is because SQLite is easy to setup for testing and demo purposes. The application models include;
+ The application uses Rails version Rails 7.0.8.7, Bootstrap as the UI framework and uses several models who's data is persisted in an SQLite database. The design decision to use SQLite is because SQLite is easy to setup for testing and demo purposes. The application models include;
 
   - ProductCatalogue - The product catalogue is the model that defines the products at Acme Widget Co. The initial product data is seeded in the database using the seeds.rb file.
 

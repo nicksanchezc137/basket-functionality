@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">Basket Line Item Details</h1>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Line Item Information</h5>
+          <table class="table">
+            <tr>
+              <th>Basket ID:</th>
+              <td><%= @basket_line_item.basket.id %></td>
+            </tr>
+            <tr>
+              <th>Product:</th>
+              <td><%= @basket_line_item.product_catalogue.product_name %></td>
+            </tr>
+            <tr>
+              <th>Product Code:</th>
+              <td><%= @basket_line_item.product_catalogue.code %></td>
+            </tr>
+            <tr>
+              <th>Price:</th>
+              <td>$<%= sprintf("%.2f", @basket_line_item.price) %></td>
+            </tr>
+            <tr>
+              <th>Offer Applied:</th>
+              <td>
+                <% if @basket_line_item.offer %>
+                  <span class="badge bg-success">
+                    <%= @basket_line_item.offer.description %> - $<%= sprintf("%.2f", @basket_line_item.offer.offer_price) %>
+                  </span>
+                <% else %>
+                  <span class="text-muted">No offer</span>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Product Image</h5>
+          <% if @basket_line_item.product_catalogue.image_url.present? %>
+            <img src="<%= @basket_line_item.product_catalogue.image_url %>" 
+                 alt="<%= @basket_line_item.product_catalogue.product_name %>" 
+                 class="img-fluid">
+          <% else %>
+            <p class="text-muted">No image available</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-12">
+      <%= link_to "Edit", edit_basket_line_item_path(@basket_line_item), class: "btn btn-warning" %>
+      <%= link_to "Back to Line Items", basket_line_items_path, class: "btn btn-secondary" %>
+      <%= link_to "Back to Basket", baskets_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

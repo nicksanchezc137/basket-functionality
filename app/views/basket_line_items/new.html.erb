@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">New Basket Line Item</h1>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <%= form_with model: @basket_line_item, local: true, class: "needs-validation", novalidate: true do |form| %>
+        <% if @basket_line_item.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(@basket_line_item.errors.count, "error") %> prohibited this basket line item from being saved:</h4>
+            <ul>
+              <% @basket_line_item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="mb-3">
+          <%= form.label :basket_id, class: "form-label" %>
+          <%= form.select :basket_id, options_from_collection_for_select(@baskets, :id, :id), 
+              { prompt: "Select a basket" }, { class: "form-select" } %>
+        </div>
+        
+        <div class="mb-3">
+          <%= form.label :product_catalogue_id, class: "form-label" %>
+          <%= form.select :product_catalogue_id, 
+              options_from_collection_for_select(@product_catalogues, :id, :product_name), 
+              { prompt: "Select a product" }, { class: "form-select" } %>
+        </div>
+        
+        <div class="mb-3">
+          <%= form.label :price, class: "form-label" %>
+          <%= form.number_field :price, step: 0.01, class: "form-control" %>
+        </div>
+        
+        <div class="mb-3">
+          <%= form.label :offer_id, "Offer (Optional)", class: "form-label" %>
+          <%= form.select :offer_id, 
+              options_from_collection_for_select(Offer.all, :id, :description), 
+              { prompt: "No offer" }, { class: "form-select" } %>
+        </div>
+        
+        <div class="mb-3">
+          <%= form.submit "Create Basket Line Item", class: "btn btn-success" %>
+          <%= link_to "Cancel", basket_line_items_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Help</h5>
+          <p class="card-text">
+            <strong>Basket:</strong> Select the basket this item belongs to.<br>
+            <strong>Product:</strong> Choose the product for this line item.<br>
+            <strong>Price:</strong> Enter the price for this item.<br>
+            <strong>Offer:</strong> Optionally select an offer to apply.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
